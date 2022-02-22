@@ -1,0 +1,28 @@
+body{
+    background-color: #ebebeb;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.app-principal{
+    background-color: white;
+    width: 700px;
+}
+
+
+.lista-informacoes{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 8px;
+    padding: 8px;
+}
+
+
+
+table thead th{
+    text-align: start;
+}

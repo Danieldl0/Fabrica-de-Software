@@ -1,0 +1,28 @@
+.menu{
+    display: flex;
+    flex: 1;
+}
+
+.menu > a{
+    text-decoration: none;
+    color: black;
+    padding: 8px;
+    margin: 8px;
+}
+
+.menu > a:hover{
+    text-decoration: underline;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.menu .cadastro-botao{
+    background-color: rgb(78, 128, 235);
+    margin-left: auto;
+    color: white;
+    border-radius: 4px;
+}
+
+.menu .cadastro-botao:hover{
+    background-color: rgb(2, 61, 190);
+}
