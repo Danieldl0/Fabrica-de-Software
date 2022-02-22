@@ -29,6 +29,7 @@ function ListaEstacionados(){
                     <th>Proprietário</th>
                     <th>Placa</th>
                     <th>Entrada</th>
+                    <th>Saida</th>
                 </tr>
             </thead>
             <tbody>

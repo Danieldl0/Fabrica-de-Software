@@ -1,6 +1,8 @@
 import { useState } from "react";
 import {VeiculosItem} from "../../Components/VeiculosItem/index"
 
+
+
 function ListaVeiculos(){
     
     const [veiculos, setVeiculos] = useState([{
@@ -34,6 +36,7 @@ function ListaVeiculos(){
                         <th>modelo</th>
                         <th>placa</th>
                         <th>cor</th>
+                        <th className="alinhar_registrar">Registrar</th>
                     </tr>
                 </thead>
                 <tbody>

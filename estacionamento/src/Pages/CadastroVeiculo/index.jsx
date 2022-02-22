@@ -1,25 +1,48 @@
+import { useForm } from 'react-hook-form';
+import {Formularioinput} from '../../Components/Formularioinput/index';
+
 function CadastroVeiculo(){
+
+    const {register, handleSubmit, formState: {errors}} = useForm();
+
+    function dadosFormulario(dados){
+        console.log(dados)
+    }
+
     return (
-        <div>
-            <h2>Cadastrar veiculos</h2>
-            <form >
-                <div>
-                    <label>Proprietário</label>
-                    <input placeholder="João Silva" type="text" />
-                </div>
-                <div>
-                    <label>Modelo</label>
-                    <input placeholder="carro quadrado" type="text" />
-                </div>
-                <div>
-                    <label>Placa</label>
-                    <input placeholder="abc-1234" type="text" />
-                </div>
-                <div>
-                    <label>Cor</label>
-                    <input placeholder="azul" type="text" />
-                </div>
-                <button>Enviar</button>
+        <div className='lista-informacoes'>
+            <h2>Cadastrar Veículos</h2>
+            <form onSubmit={handleSubmit(dadosFormulario)}>
+
+                <Formularioinput
+                    label = "Proprietário"
+                    register = {register("nome", {required: true})}
+                    error = {errors.nome}
+                    placenome = "Nome do proprietário"
+                />
+
+                <Formularioinput
+                    label = "Modelo"
+                    register = {register("modelo", {required: true})}
+                    error = {errors.modelo}
+                    placenome = "Ex: Uno"
+                />
+
+                <Formularioinput
+                    label = "Placa"
+                    register = {register("placa", {required: true})}
+                    error = {errors.placa}
+                    placenome = "abc-1234"
+                />  
+
+                <Formularioinput
+                    label = "Cor"
+                    register = {register("cor", {required: true})}
+                    error = {errors.cor}
+                    placenome = "Cor do veículo"
+                />  
+                
+                <div className="butao"><button>Enviar</button></div>
             </form>
         </div>
 

@@ -6,7 +6,7 @@ function EstacionadoItem(props){
         <td>{props.clienteVeiculo}</td>
         <td>{props.veiculoPlaca}</td>
         <td>{format(props.dataEntrada, "dd/MM/yyyy HH:mm:ss")}</td>
-        <td>{props.dataSaida != null ? format(props.dataSaida, "dd/MM/yyyy HH:mm:ss") : null}</td>
+        <td>{props.dataSaida != null ? format(props.dataSaida, "dd/MM/yyyy HH:mm:ss") : '--'}</td>
     </tr>
 
 
