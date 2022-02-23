@@ -1,12 +1,22 @@
 import { useForm } from 'react-hook-form';
 import {Formularioinput} from '../../Components/Formularioinput/index';
+import {api} from "../../Services/api/index";
+
+
 
 function CadastroVeiculo(){
 
     const {register, handleSubmit, formState: {errors}} = useForm();
 
     function dadosFormulario(dados){
-        console.log(dados)
+        api.post("/veiculos/", {
+            nome_cliente: dados.nome,
+            modelo_carro: dados.modelo,
+            cor: dados.cor,
+            placa: dados.placa
+        }).then(response => console.log(response))
+        .catch(erro => console.log(erro))
+        
     }
 
     return (
