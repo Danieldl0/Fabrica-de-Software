@@ -1,25 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {EstacionadoItem} from '../../Components/EstacionadosItem/index'
+import {getEstacionamento} from "../../Services/api/estacionamentoService"
 
 function ListaEstacionamento(){
     
-    const [estacionamento, setEstacionamento] = useState([{
-        veiculo_nome_proprietario : "teste1",
-        veiculo_placa: "abc-1234",
-        data_entrada: new Date(),
-        data_saida: null,
-        veiculo: 1,
-    },
-    {
-        veiculo_nome_proprietario : "teste2",
-        veiculo_placa: "abc-9876",
-        data_entrada: new Date(),
-        data_saida: new Date(),
-        veiculo: 2,
+    const [estacionamento, setEstacionamento] = useState([])
 
+    async function carregarEstacionamento(){
+        try {
+            setEstacionamento(await getEstacionamento());
+        } catch (error) {
+            console.log('deu erro');
+        }
     }
 
-])
+    useEffect(() =>{
+        carregarEstacionamento();
+    },[])
 
     
     return (
@@ -29,6 +26,7 @@ function ListaEstacionamento(){
                 <thead>
                     <tr>
                         <th>Id</th>
+                        <th>Id:Carro</th>
                         <th>Proprietário</th>
                         <th>Placa</th>
                         <th>Entrada</th>
@@ -38,10 +36,11 @@ function ListaEstacionamento(){
                 <tbody>
                     {estacionamento.map((estacionamento)=>{
                         return( <EstacionadoItem
-                            key = {estacionamento.veiculo}
-                            id_estacionados ={estacionamento.veiculo}
-                            clienteVeiculo = {estacionamento.veiculo_nome_proprietario}
-                            veiculoPlaca = {estacionamento.veiculo_placa}
+                            key = {estacionamento.id}
+                            id_estacionados ={estacionamento.id}
+                            id_carro = {estacionamento.veiculo}
+                            nomeCliente = {estacionamento.nome_cliente}
+                            veiculoPlaca = {estacionamento.cliente_placa}
                             dataEntrada = {estacionamento.data_entrada}
                             dataSaida = {estacionamento.data_saida}
                         />)

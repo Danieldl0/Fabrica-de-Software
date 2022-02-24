@@ -1,27 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {VeiculosItem} from "../../Components/VeiculosItem/index"
-
+import {getVeiculos} from "../../Services/api/veiculoService"
 
 
 function ListaVeiculos(){
     
-    const [veiculos, setVeiculos] = useState([{
-        nome_proprietario: "daniel",
-        modelo: "carro quadrado",
-        placa: "abc-1234",
-        cor: "laranja",
-        veiculo: 1,
-    },
-    {
-        nome_proprietario: "teste2",
-        modelo: "carro quadrado",
-        placa: "abc-1234",
-        cor: "amarelo",
-        veiculo: 2,
+
+    const [veiculos, setVeiculos] = useState([])
+    
+    async function carregarDados(){
+        try {
+            setVeiculos(await getVeiculos())
+        } catch (error) {
+            console.log("não foi possivel carregar os dados")
+        }
     }
 
-    ])
-    
+    useEffect(()=>{
+        carregarDados();
+    }, [])
     
     return (
         <div className="lista-informacoes">
@@ -42,12 +39,12 @@ function ListaVeiculos(){
                 <tbody>
                     {veiculos.map((veiculos)=>{
                         return (<VeiculosItem
-                            key = {veiculos.veiculo}
-                            nomeProprietario = {veiculos.nome_proprietario}
-                            modelo = {veiculos.modelo}
+                            key = {veiculos.id}
+                            nomeProprietario = {veiculos.nome_cliente}
+                            modelo = {veiculos.modelo_carro}
                             placa = {veiculos.placa}
                             cor = {veiculos.cor}
-                            id_veiculo = {veiculos.veiculo}
+                            id_veiculo = {veiculos.id}
                         />
                     )})}
                 </tbody>
