@@ -19,7 +19,7 @@ function App() {
         <Route path='/veiculos' element={<ListaVeiculos/>} />
         <Route path='/estacionamento' element={<ListaEstacionamento/>} />
         <Route path='/veiculos/cadastro' element={<CadastroVeiculo/>} />
-        <Route path='/veiculos/:id/estacionamento/cadastro' element={<CadastroEstacionamento/>}> </Route>
+        <Route path='/veiculos/:id_veiculo/estacionamento/:id_estacionamento/cadastro' element={<CadastroEstacionamento/>}> </Route>
       </Routes>
     </div>
   );

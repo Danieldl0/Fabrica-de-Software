@@ -12,7 +12,7 @@ function VeiculosItem(props){
         <td>{props.placa}</td>
         <td>{props.cor}</td>
         <td>
-            <Link to={`${props.id_veiculo}/estacionamento/cadastro`} className="alinhar_registrar"><BiLinkExternal/></Link>
+            <Link to={`${props.id_veiculo}/estacionamento/${0}/cadastro`} className="alinhar_registrar"><BiLinkExternal/></Link>
         </td>
     </tr>
 }

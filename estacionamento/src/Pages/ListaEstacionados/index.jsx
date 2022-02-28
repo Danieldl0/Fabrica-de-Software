@@ -33,7 +33,8 @@ function ListaEstacionados(){
                     <th>Proprietário</th>
                     <th>Placa</th>
                     <th>Entrada</th>
-                    <th>Saida</th>
+                    <th> Saída</th>
+                    <th className='alinhar_registrar'>Registrar Saida</th>
                 </tr>
             </thead>
             <tbody>

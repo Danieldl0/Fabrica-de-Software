@@ -13,10 +13,25 @@ export async function getEstacionados(){
 }
 
 
-export async function postEstacionados(dados){
+export async function getEstacionamentoById(id){
+    const resp = await api.get(`/estacionamento/${id}`);
+    return resp.data;
+}
+
+
+export async function postEstacionados(dados, id){
     return await api.post("/estacionamento/",{
         entrada: dados.entrada,
-        veiculo: 20
+        veiculo: id,
     });
     
+}
+
+
+export async function putEstacionamento(saida, id_veiculo, id_estacionamento){
+    await api.put(`estacionamento/${id_estacionamento}/`, {
+        data_saida: saida,
+        veiculo: id_veiculo,
+    });
+
 }
