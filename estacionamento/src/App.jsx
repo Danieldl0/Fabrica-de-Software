@@ -1,6 +1,5 @@
-import { Component } from 'react';
 import './style.css';
-import {Route, Routes, Link} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import {Menu} from "./Components/Menu/index";
 
 import {ListaEstacionados} from "./Pages/ListaEstacionados/index";

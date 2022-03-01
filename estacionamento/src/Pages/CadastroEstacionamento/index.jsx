@@ -16,12 +16,12 @@ function CadastroEstacionamento(){
 
 
     async function enviarDados(dados){
-        console.log(dados);
         if(dados.saida){
             //fazer put
             
             try {
                 await putEstacionamento(dados.saida, params.id_veiculo, params.id_estacionamento);
+                alert("Estacionamento atualizado com sucesso")
                 navigate("/");
             } catch (error) {
                 console.log("erro");
@@ -30,6 +30,7 @@ function CadastroEstacionamento(){
             //fazer post
             try {
                 await postEstacionados(dados, params.id_veiculo);
+                alert("Estacionamento registrado com sucesso")
                 navigate("/");
             } catch (error) {
                 console.log("veiculo ja estacionado")
@@ -41,36 +42,39 @@ function CadastroEstacionamento(){
     }
 
 
-    async function carregarVeiculo(){
-        let estacionamentoAberto;
-        
-
-        try {
-            
-            const veiculo = await getVeiculoById(params.id_veiculo)
-     
-            reset({
-                nome: veiculo.nome_cliente,
-                placa: veiculo.placa,
-                entrada: format(new Date(), "yyyy-MM-dd'T'HH:mm")
-            })
-
-            if (params.id_estacionamento != 0){
-                estacionamentoAberto = await getEstacionamentoById(params.id_estacionamento);
-                reset({
-                    entrada: format(new Date(estacionamentoAberto.data_entrada), "yyyy-MM-dd'T'HH:mm")
-                })
-            }
-        } catch (error) {
-            alert("Veiculo não encontrado!");
-            navigate("/veiculos/");
-        }
-        
-    }
-
     useEffect(()=>{
+
+        async function carregarVeiculo(){
+            let estacionamentoAberto;
+            
+    
+            try {
+                
+                const veiculo = await getVeiculoById(params.id_veiculo)
+    
+                reset({
+                    nome: veiculo.nome_cliente,
+                    placa: veiculo.placa,
+                    entrada: format(new Date(), "yyyy-MM-dd'T'HH:mm")
+                })
+    
+                if (params.id_estacionamento !== "0"){
+                    estacionamentoAberto = await getEstacionamentoById(params.id_estacionamento);
+                    reset({
+                        entrada: format(new Date(estacionamentoAberto.data_entrada), "yyyy-MM-dd'T'HH:mm")
+                    })
+                }
+            } catch (error) {
+                alert("Veiculo não encontrado!");
+                navigate("/veiculos/");
+            }
+            
+        }
+    
+
         carregarVeiculo();
-    }, []);
+    }, [navigate, params.id_estacionamento, params.id_veiculo, reset]);
+   
 
 
     return (
@@ -103,7 +107,7 @@ function CadastroEstacionamento(){
                     register = {register("saida")}
                     error = {errors.saida}
                     tipo = "datetime-local"
-                    disabled={params.id_estacionamento == 0 ? true : false}
+                    disabled={params.id_estacionamento === "0" ? true : false}
                />
                <div className="butao"><button>Enviar</button></div>
             </form>

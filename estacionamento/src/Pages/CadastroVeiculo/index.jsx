@@ -1,5 +1,4 @@
 import { useForm } from 'react-hook-form';
-import {useNavigate} from "react-router-dom";
 import {Formularioinput} from '../../Components/Formularioinput/index';
 import {postVeiculo} from "../../Services/api/veiculoService";
 
@@ -7,15 +6,15 @@ import {postVeiculo} from "../../Services/api/veiculoService";
 
 function CadastroVeiculo(){
 
-    const {register, handleSubmit, formState: {errors}} = useForm();
-    const navigate = useNavigate();
+    const {register, handleSubmit, formState: {errors}, reset} = useForm();
 
     async function enviarDados(dados){
         try {
             await postVeiculo(dados)
-            navigate("/veiculos/");
+            reset(Formularioinput.field)
+            alert("Veículo cadastrado com sucesso")
         } catch (error) {
-            console.log("não foi possivel cadastrar o veiculo")
+            alert("ERRO: Veículo já está cadastrado");
         }
     }
 
